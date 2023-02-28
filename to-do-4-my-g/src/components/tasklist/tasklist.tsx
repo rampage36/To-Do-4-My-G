@@ -10,6 +10,7 @@ type PropsType = {
     tasks: Array<TaskType>
     removeTask: (id: string) => void
     addNote: (text: string) => void
+    closeTask: (id: string) => void
 }
 
 export function TaskList(props: PropsType) {
@@ -32,7 +33,7 @@ export function TaskList(props: PropsType) {
        { 
         props.tasks.map((t) =>
             {
-                return <li><input type="checkbox" checked={t.isDone}/>
+                return <li><input type="checkbox" checked={t.isDone} onClick={(e) => props.closeTask(t.id) }/>
                 <span>{t.text}</span>
                 <button onClick={ (e) => { props.removeTask(t.id) } }>X</button></li>
             })
