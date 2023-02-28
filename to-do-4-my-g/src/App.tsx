@@ -28,6 +28,14 @@ function App() {
       let newTasks = [newTask, ...tasks];
       setTasks(newTasks);
     }
+    
+    const closeTask = (id: string) => {
+      setTasks(
+        [...tasks.map((tasks) => 
+          tasks.id === id ? {...tasks, isDone: !tasks.isDone } : {...tasks})]
+      )
+    }
+
 
     let tasksForShow = tasks;
     if (filter === "completed") {
@@ -41,7 +49,8 @@ function App() {
    <div className='appBody'>
       <TaskList tasks={tasksForShow}
                 removeTask={removeTask}
-                addNote={addNote}/>
+                addNote={addNote}
+                closeTask={closeTask}/>
     <div>
       <button onClick={ () => {changeFilter("all")}}>Все задачи</button>
       <button onClick={ () => {changeFilter("active")}}>Активно</button>
