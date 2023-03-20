@@ -4,6 +4,7 @@ import { TaskList } from './components/tasklist/tasklist';
 import {v1} from 'uuid'
 import { Grid, Button, Box, Container } from '@mui/material';
 
+
 export type filterValuetype = "all" | "completed" | "active" 
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
       )
     }
 
+    let doneTasks = tasks.filter(t => t.isDone === true);
+    let undoneTasks = tasks.filter(t => t.isDone === false);
+
     let tasksForShow = tasks;
     if (filter === "completed") {
       tasksForShow = tasks.filter(t => t.isDone === true);
@@ -48,12 +52,21 @@ function App() {
   return (
   <Container className='all'
              sx={{
-              mt: '5rem'
+              mt: '3rem'
              }}>
+       
         <Grid container spacing={2}>
             
         <Grid item xs={3}>
-            <Container className='Sample1'>
+            <Container className='Sample1'
+                       sx={{
+                        padding: '10px',
+                       }}>
+
+            <h1>Общее количество задач : {tasks.length}</h1>
+            <h1>Выполненные задачи : {doneTasks.length}</h1>
+            <h1>Невыполненные задачи : {undoneTasks.length}</h1>
+            
             </Container>
         </Grid>
 
@@ -64,7 +77,10 @@ function App() {
                           addNote={addNote}
                           closeTask={closeTask}/>
                 
-                <Container>
+                <Container 
+                sx={{
+                  justifyContent: 'center',
+                }}>
                       <Button   
                         sx={{margin: '15px'}}
                         variant="outlined" 

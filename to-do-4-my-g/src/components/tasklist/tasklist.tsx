@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import './tasklist.css'
-import  InputUnstyled  from '@mui/base/InputUnstyled'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { Grid, IconButton, Checkbox, Box, Divider, Container, Stack, TextField, Button   } from '@mui/material';
 
@@ -23,6 +22,7 @@ export function TaskList(props: PropsType) {
 
     return (
 <div>
+
         <Box>
             { 
                 props.tasks.map((t) =>
@@ -38,10 +38,7 @@ export function TaskList(props: PropsType) {
                         sx={{
                             margin: 2,
                             borderRadius: 5,
-                            '&:hover': {
-                                backgroundColor: 'primary.main',
-                                opacity: [0.1, 0.1, 0.1],},
-                                }}> {t.text}  </Box>
+                                }}>{t.text}</Box>
                                 </Grid>
                                 
                                 <Grid item xs={1}>
@@ -66,7 +63,8 @@ export function TaskList(props: PropsType) {
         mt: '5rem',
         mb: '2rem'
     }} >
-            <TextField   
+            <TextField
+                placeholder='Введите текст заметки'  
                 fullWidth
                 value={newNoteText} 
                 onChange={ (e) => {setnewNoteText(e.currentTarget.value)}}/>
