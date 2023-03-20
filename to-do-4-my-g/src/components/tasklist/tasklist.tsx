@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import './tasklist.css'
+import  InputUnstyled  from '@mui/base/InputUnstyled'
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { Grid, IconButton, Checkbox, Box, Divider, Container, Stack, TextField, Button   } from '@mui/material';
 
 type TaskType = {
     id: string
@@ -19,25 +23,59 @@ export function TaskList(props: PropsType) {
 
     return (
 <div>
-    <div>
-        <input value={newNoteText} onChange={ (e) => {
-           setnewNoteText(e.currentTarget.value) 
-        } } />
+        <Box>
+            { 
+                props.tasks.map((t) =>
+                    {
+                        return <Box>
+                            <Grid container spacing={2}>
+                                <Grid item xs={1}>
+                                <Checkbox checked={t.isDone} onClick={(e) => props.closeTask(t.id) }/>
+                                </Grid>
+                                
+                                <Grid item xs={10}>
+                                <Box
+                        sx={{
+                            margin: 2,
+                            borderRadius: 5,
+                            '&:hover': {
+                                backgroundColor: 'primary.main',
+                                opacity: [0.1, 0.1, 0.1],},
+                                }}> {t.text}  </Box>
+                                </Grid>
+                                
+                                <Grid item xs={1}>
+                                    <IconButton>
+                                        <CloseOutlinedIcon 
+                                        onClick={ (e) => { props.removeTask(t.id) } }>
 
-        <button onClick={ () => {
-            props.addNote(newNoteText)
-            setnewNoteText("");
-            }}>+</button>
-    </div>
-    <ul>
-       { 
-        props.tasks.map((t) =>
-            {
-                return <li><input type="checkbox" checked={t.isDone} onClick={(e) => props.closeTask(t.id) }/>
-                <span>{t.text}</span>
-                <button onClick={ (e) => { props.removeTask(t.id) } }>X</button></li>
-            })
-        }
-    </ul>
+                                        </CloseOutlinedIcon>
+                                    </IconButton>
+                                </Grid>
+
+                            </Grid>
+                            <Divider />  
+                    </Box>
+                     
+                    })
+                }
+        </Box>
+        
+    <Container
+    sx={{
+        mt: '5rem',
+        mb: '2rem'
+    }} >
+            <TextField   
+                fullWidth
+                value={newNoteText} 
+                onChange={ (e) => {setnewNoteText(e.currentTarget.value)}}/>
+    </Container>
+
+        <Button 
+            
+            onClick={ () => { props.addNote(newNoteText)
+            setnewNoteText("");}}>Добавить заметку
+        </Button>
 </div>);
 } 
