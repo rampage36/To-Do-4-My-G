@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import './App.css';
 import { TaskList } from './components/tasklist/tasklist';
 import {v1} from 'uuid'
-import { Grid, Button } from '@mui/material';
+import { Grid, Button, Box, Container } from '@mui/material';
 
 export type filterValuetype = "all" | "completed" | "active" 
 
@@ -46,48 +46,51 @@ function App() {
     }
 
   return (
-  <div className='all'>
-        <Grid container spacing={1}>
+  <Container className='all'
+             sx={{
+              mt: '5rem'
+             }}>
+        <Grid container spacing={2}>
             
         <Grid item xs={3}>
-            <div className='Sample1'>
-            </div>
+            <Container className='Sample1'>
+            </Container>
         </Grid>
 
         <Grid item xs={6}>
-            <div className='appBody'>
+            <Box className='appBody'>
                 <TaskList tasks={tasksForShow}
                           removeTask={removeTask}
                           addNote={addNote}
                           closeTask={closeTask}/>
                 
-                <div className='btn-group'>
-                  <Button   
-                    sx={{margin: '15px'}}
-                    variant="outlined" 
-                    onClick={ () => {changeFilter("all")}}>Все задачи
-                  </Button>
-                  <Button
-                    sx={{margin: '15px'}}
-                    variant="outlined" 
-                    onClick={ () => {changeFilter("active")}}>Активно
-                  </Button>
-                  <Button
-                    sx={{margin: '15px'}}
-                    variant="outlined" 
-                    onClick={ () => {changeFilter("completed")}}>Выполненно
-                  </Button>
-                </div>
-            </div>
+                <Container>
+                      <Button   
+                        sx={{margin: '15px'}}
+                        variant="outlined" 
+                        onClick={ () => {changeFilter("all")}}>Все задачи
+                      </Button>
+                      <Button
+                        sx={{margin: '15px'}}
+                        variant="outlined" 
+                        onClick={ () => {changeFilter("active")}}>Активно
+                      </Button>
+                      <Button
+                        sx={{margin: '15px'}}
+                        variant="outlined" 
+                        onClick={ () => {changeFilter("completed")}}>Выполненно
+                      </Button>
+              </Container>
+            </Box>
         </Grid>
 
         <Grid item xs={3}>
-              <div className='Sample2'>        
-              </div>
+              <Container className='Sample2'>        
+              </Container>
         </Grid>
 
       </Grid>
-  </div>
+  </Container>
   );
 }
 

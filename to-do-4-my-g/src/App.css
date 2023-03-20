@@ -1,0 +1,33 @@
+.appBody {
+  margin: 25px;
+  padding: 40px;
+  background-color: rgba(222, 250, 240, 0.185);
+  max-width: 800px;
+  min-height: 800px;
+  min-width: 500px;  
+  border-radius: 15px;
+  box-shadow: 15px 15px 30px rgba(0,0,0, .85);
+  justify-content: center;
+  align-items: center;
+}
+
+.Sample2 {
+  margin: 25px;
+  background-color: rgba(222, 250, 240, 0.185);
+  min-width: 300px;
+  min-height: 800px;  
+  border-radius: 15px;
+  box-shadow: 15px 15px 30px rgba(0,0,0, .85);
+}
+.Sample1 {
+  margin: 25px;
+  background-color: rgba(222, 250, 240, 0.185);
+  min-width: 300px;
+  min-height: 800px;  
+  border-radius: 15px;
+  box-shadow: 15px 15px 30px rgba(0,0,0, .85);
+}
+.all {
+  min-width: 100%;
+
+}
