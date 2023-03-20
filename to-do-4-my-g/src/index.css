@@ -1,10 +1,8 @@
+
 .all {
-margin-top: 20px;
-min-height: 1380px;
-min-width: 700px;
+background-color: rgba(247, 253, 192, 0.349);
 border-radius: 15px;
-box-shadow: 15px 15px 15px 30px rgba(0,0,0, .85);
-border: 2px;
+box-shadow: 15px 15px 15px 30px rgba(0, 0, 0, 0.363);
 }
 
 *::-webkit-scrollbar {
