@@ -2,9 +2,12 @@ import React,{useState} from 'react';
 import './App.css';
 import { TaskList } from './components/tasklist/tasklist';
 import {v1} from 'uuid'
-import { Grid, Button, Box, Container } from '@mui/material';
+import { Grid, Button, Box, Container, Typography, ThemeProvider, Paper } from '@mui/material';
+import Clock from './components/Clock/clock'
+import { darkTheme, lightTheme } from "./components/style/theme"
+import SearchAppBar from './components/AppBar/AppBar' 
 
-
+const theme = darkTheme ;
 export type filterValuetype = "all" | "completed" | "active" 
 
 function App() {
@@ -50,63 +53,79 @@ function App() {
     }
 
   return (
-  <Container className='all'
-             sx={{
-              mt: '3rem'
-             }}>
-       
-        <Grid container spacing={2}>
-            
-        <Grid item xs={3}>
-            <Container className='Sample1'
-                       sx={{
-                        padding: '10px',
-                       }}>
-
-            <h1>Общее количество задач : {tasks.length}</h1>
-            <h1>Выполненные задачи : {doneTasks.length}</h1>
-            <h1>Невыполненные задачи : {undoneTasks.length}</h1>
-            
-            </Container>
-        </Grid>
-
-        <Grid item xs={6}>
-            <Box className='appBody'>
-                <TaskList tasks={tasksForShow}
-                          removeTask={removeTask}
-                          addNote={addNote}
-                          closeTask={closeTask}/>
-                
-                <Container 
+<ThemeProvider theme={theme}> 
+<Paper
+        sx={{
+          backgroundColor: theme.palette.primary.main,
+          height: "100vh",
+          borderRadius: 5,
+        }}><SearchAppBar />      
+      <Container className='all'
                 sx={{
-                  justifyContent: 'center',
+                  mt: '3rem'
+                
                 }}>
-                      <Button   
-                        sx={{margin: '15px'}}
-                        variant="outlined" 
-                        onClick={ () => {changeFilter("all")}}>Все задачи
-                      </Button>
-                      <Button
-                        sx={{margin: '15px'}}
-                        variant="outlined" 
-                        onClick={ () => {changeFilter("active")}}>Активно
-                      </Button>
-                      <Button
-                        sx={{margin: '15px'}}
-                        variant="outlined" 
-                        onClick={ () => {changeFilter("completed")}}>Выполненно
-                      </Button>
-              </Container>
-            </Box>
-        </Grid>
+          
+            <Grid container spacing={2}>
+                
+            <Grid item xs={3}>
+                <Container className='Sample1'
+                          sx={{
+                            padding: '10px',
+                          }}>
+                  <Typography variant="h5" 
+                              gutterBottom
+                              component="div">
+                Общее количество задач : {tasks.length}<div/>
+                Выполненные задачи : {doneTasks.length}<div/>
+                Невыполненные задачи : {undoneTasks.length}<div/>
+                  </Typography>
+                </Container>
+            </Grid>
 
-        <Grid item xs={3}>
-              <Container className='Sample2'>        
-              </Container>
-        </Grid>
+            <Grid item xs={6}>
+                <Box className='appBody'>
+                    <TaskList tasks={tasksForShow}
+                              removeTask={removeTask}
+                              addNote={addNote}
+                              closeTask={closeTask}/>
+                    
+                    <Container 
+                    sx={{
+                      justifyContent: 'center',
+                    }}>
+                          <Button 
+                            color="secondary"  
+                            sx={{margin: '15px'}}
+                            variant="outlined" 
+                            onClick={ () => {changeFilter("all")}}>Все задачи
+                          </Button>
+                          <Button
+                            color="secondary"
+                            sx={{margin: '15px'}}
+                            variant="outlined" 
+                            onClick={ () => {changeFilter("active")}}>Активно
+                          </Button>
+                          <Button
+                            color="secondary"
+                            sx={{margin: '15px'}}
+                            variant="outlined" 
+                            onClick={ () => {changeFilter("completed")}}>Выполненно
+                          </Button>
+                  </Container>
+                </Box>
+            </Grid>
 
-      </Grid>
-  </Container>
+            <Grid item xs={3}>
+                  <Container className='Sample2'>
+                    <Clock />      
+                  </Container>
+            </Grid>
+
+          </Grid>
+      </Container>
+  </Paper>
+</ThemeProvider>
   );
 }
 

@@ -1,9 +1,8 @@
-
+/* 
 .all {
 background-color: rgba(247, 253, 192, 0.349);
-border-radius: 15px;
 box-shadow: 15px 15px 15px 30px rgba(0, 0, 0, 0.363);
-}
+} */
 
 *::-webkit-scrollbar {
   width: 8px;

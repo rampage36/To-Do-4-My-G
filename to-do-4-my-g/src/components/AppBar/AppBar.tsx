@@ -12,8 +12,9 @@ export default function SearchAppBar() {
                 }}>
           <Toolbar>
             <Typography
-              padding={'10px'}
               variant="h6"
+              gutterBottom
+              padding={'10px'}
               noWrap
               component="div"
               sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
