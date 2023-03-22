@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import './tasklist.css'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import { Grid, IconButton, Checkbox, Box, Divider, Container, Stack, TextField, Button   } from '@mui/material';
+import { Grid, IconButton, Checkbox, Box, Divider, Container, Typography, TextField, Button   } from '@mui/material';
+
 
 type TaskType = {
     id: string
@@ -34,11 +35,11 @@ export function TaskList(props: PropsType) {
                                 </Grid>
                                 
                                 <Grid item xs={10}>
-                                <Box
-                        sx={{
-                            margin: 2,
-                            borderRadius: 5,
-                                }}>{t.text}</Box>
+                                <Typography variant="h6" 
+                                            component="div"
+                                            mt={1}>
+                                {t.text}
+                                </Typography>
                                 </Grid>
                                 
                                 <Grid item xs={1}>
@@ -49,11 +50,9 @@ export function TaskList(props: PropsType) {
                                         </CloseOutlinedIcon>
                                     </IconButton>
                                 </Grid>
-
                             </Grid>
                             <Divider />  
                     </Box>
-                     
                     })
                 }
         </Box>
@@ -71,7 +70,8 @@ export function TaskList(props: PropsType) {
     </Container>
 
         <Button 
-            
+            className="btn"
+            color="secondary"
             onClick={ () => { props.addNote(newNoteText)
             setnewNoteText("");}}>Добавить заметку
         </Button>
